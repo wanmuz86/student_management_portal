@@ -224,6 +224,7 @@ $('#frm-create-class #program_id').on('change', function(e){
 			text: l.level
 		}))
 		})
+		showClassInfo($('#academic_id').val())
 	})
 })
 
@@ -366,9 +367,11 @@ $(document).on('click','.del-class', function(e){
 
 });
 
-function showClassInfo(academic_id)
+function showClassInfo(data)
 {
-	$.get("{{route('showClassInformation')}}", {academic_id:academic_id}, function(data){
+	var data = $('#frm-create-class').serialize();
+
+	$.get("{{route('showClassInformation')}}", data, function(data){
 		$('#add-class-info').empty().append(data);
 		MergeCommonRows($('#table-class-info'))
 	});

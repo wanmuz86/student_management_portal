@@ -85,10 +85,22 @@ class CourseController extends Controller
         }
     }
     public function showClassInformation(Request $request){
-        $classes = $this->ClassInformation()->get();
+        if ($request->academic_id!="" && $request->program_id==""){
+            $criterial = array('academics.academic_id'=>$request->academic_id);
+        }
+        elseif($request->academic_id!="" && 
+            $request->program_id!="" 
+            && $request->level_id!="")
+        {
+            $criterial = array('academics.academic_id'=>$request->academic_id,
+                'programs.program_id'=>$request->program_id,
+                'levels.level_id'=>$request->level_id);
+        }
+
+        $classes = $this->ClassInformation($criterial)->get();
         return view('class.classInfo',compact('classes'));
     }
-    public function ClassInformation(){
+    public function ClassInformation($criterial){
         return MyClass::join('academics','academics.academic_id','=','classes.academic_id')
         ->join('levels','levels.level_id','=','classes.level_id')
         ->join('programs','programs.program_id','=','levels.program_id')
@@ -96,6 +108,7 @@ class CourseController extends Controller
         ->join('times','times.time_id','=','classes.time_id')
         ->join('batches','batches.batch_id','=','classes.batch_id')
         ->join('groups','groups.group_id','=','classes.group_id')
+        ->where($criterial)
         ->orderBy('classes.class_id');
         
     }

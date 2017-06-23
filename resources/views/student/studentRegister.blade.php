@@ -170,14 +170,14 @@
 											<tr style="border-bottom: 1px solid #ccc;">
 												<td>
 													<label>
-														<input type="radio" name="status1" id="status1" value="0" required checked>
+														<input type="radio" name="status" id="status" value="0" required checked>
 														Single
 													</label>
 												</td>
 												<td>
 													<label>
 
-														<input type="radio" name="status2" id="status2" value="1" required>
+														<input type="radio" name="status" id="status" value="1" required>
 														Married
 													</label>
 												</td>
@@ -278,19 +278,12 @@
 								<input type="text" name="province" id="province" class="form-control">
 							</div>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-12">
 							<div class="form-group">
 								<label for="province">Current Address</label>
 								<input type="text" name="current_address" id="current_address" class="form-control">
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="province">Current Address Study</label>
-								<input type="text" name="Cas" id="Cas" class="form-control">
-							</div>
-						</div>
-
 					</div>
 				</div>
 
